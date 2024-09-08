@@ -7,7 +7,6 @@ jobs:
   ci:
     runs-on: ubuntu-20.04
     env:
-
       DB_HOST: 127.0.0.1
       DB_PORT: 3306
       DB_USER: root
@@ -18,7 +17,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup python environment
-        id: setup-python
         uses: actions/setup-python@v2
         with:
           python-version: 3.12
@@ -29,12 +27,12 @@ jobs:
 
       - name: Install Poetry
         run: |
-          curl -sSL curl -sSL https://install.python-poetry.org | python3 -
-          echo "${HOME}/.local/bin" >> $GITHUB_PATH
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "${HOME}/.local/bin" >> $GITHUB_PATH 
 
       - name: Install dependencies
         run: |
-          poetry install
+          poetry install --no-root
 
       - name: Run black
         run: |
